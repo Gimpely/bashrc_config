@@ -1,0 +1,40 @@
+################################## bashrc configuration ###############################################
+#made by Gimpely & Llavrih
+#################################### ROS configuration ################################################
+#if ROS2 is used in BASH shell
+if [ -n "$ROS_VERSION" ] && [ $ROS_VERSION -eq 2 ] && [ "$SHELL" = "/bin/bash" ]
+then
+	#ROS2 is used
+	alias sds="source install/setup.bash && source install/local_setup.bash"
+	alias cb="colcon build"
+	alias cclear="rm -rf build/ install/ log/"
+fi
+
+#if ROS1 is used in BASH shell
+if [ -n "$ROS_VERSION" ] && [ $ROS_VERSION -eq 1 ] && [ "$SHELL" = "/bin/bash" ]
+then
+	alias sds="echo Sourcing ROS workspace from devel; source devel/setup.bash"
+	alias cm="catkin_make"
+	alias cb="catkin build"
+	alias cclear="echo Removing build/ and devel/ directories; rm -rf build/ devel/"
+fi
+
+alias tl="rostopic list"
+
+alias rosdep_all="rosdep install --from-paths src --ignore-src -r -y"
+
+##################### multimaster variables by default #############################################
+export ROS_HOSTNAME=$(hostname).local
+export ROS_MASTER_URI=http://$ROS_HOSTNAME:11311
+
+####################################################################################################
+ 
+#self explanatory
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias bshrc="sudo nano ~/.bashrc; source ~/.bashrc"
+
+alias gss="git status"
+
+
